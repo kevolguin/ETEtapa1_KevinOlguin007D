@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+    {%load static%}
+  <title>CaosNews</title> 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Kevin Olguín">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
+
+    <!-- Bootstrap  CSS -->
+    <link href="{%static 'css/index.css'%}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Estilos -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+    <!-- Estilos -->
+    <link href="blog.css" rel="stylesheet">
+</head>
+<body class="bg">
+    {%load static%}
+  <p> Kevin @COPYRIGHT</p>
+    <div class="container">
+        <header class="blog-header py-3">
+          <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-4 pt-1">
+              <a class="link-secondary" href="{% url 'index'%}">Inicio</a>
+            </div>
+            <div class="col-4 text-center">
+              <a class="blog-header-logo text-light" href="{% url 'index'%}">CaosNews</a>
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+              <a class="link-secondary" href="#" aria-label="Search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+              </a>
+            </div>
+          </div>
+        </header>
+    <nav class="navbar navbar-expand-sm navbar-light bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- logo -->
+        <a class="navbar-brand" href="{% url 'index'%}">
+          <img src="{% static 'img/Logo.png'%}" width="30" height="30" alt="">
+        </a>
+        
+        <!-- enlaces -->
+        <div class="collapse navbar-collapse" id="opciones">   
+          <ul class="navbar-nav">        
+          </ul>
+        </div>
+      </nav>
+      <br><br><br>
+        <h1 style="color:aliceblue">Usuario</h1>
+        </style>
+
+        <table class="table" style="color: azure;">
+            <thead>
+                <tr>
+                  <th scope="col">Rut</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Telefono</th>
+                  <th scope="col">Direccion</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Pais</th>
+                  <th scope="col">Contraseña</th>
+                  <th scope="col">Imagen</th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for us in usuarios%}
+                    <tr>
+                      <td>{{us.rut}}</td>
+                      <td>{{us.nombre}}</td>
+                      <td>{{us.telefono}}</td>
+                      <td>{{us.direccion}}</td>
+                      <td>{{us.email}}</td>
+                      <td>{{us.pais}}</td>
+                      <td>{{us.contrasena}}</td>
+                      {% if us.image %}
+                          <td style="margin-bottom: 10px; width: 100px; height: 100px;"><img class="card-img-top" src="{{ us.image.url}}" alt="=Foto Colaborador"></td>
+                        {% else %}
+                          <td><img src="{% static 'images/'%}"></td>
+                        {% endif %}
+                      <td><a href="{% url 'form_mod_usuario' us.rut%}" class="btn btn-primary">Modificar  </a></td>
+                      <td><a href="{% url 'form_del_usuario' us.rut%}" class="btn btn-danger">Eliminar </a></td>
+                    </tr>
+                {%endfor%}
+
+            </tbody>
+
+        </table>
+
+        <a href="crear_usuario" class="btn btn-success">Volver</a>
+    </body>
+      <footer class="py-5">
+        {%load static%}
+        <div class="container" id="fondo">
+        <a class="navbar-brand" href="https://www.instagram.com/pelisCriticas12/" target="_blank">
+          <img src="{%static 'img/EnlaceInstagram.png'%}" width="91" height="90" alt="">
+        </a>
+        <p class="text-light"><small>Kevin @Copyrigth Derechos reservados</small></p>
+      </footer>
+      </html>
